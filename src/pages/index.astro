@@ -1,10 +1,30 @@
 ---
 import Badge from "../components/ui/Badge.astro";
 import ButtonLink from "../components/ui/ButtonLink.astro";
+import Card from "../components/ui/Card.astro";
 import Container from "../components/ui/Container.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const technologies = [
+const focusAreas = [
+  {
+    title: "Portfolio Frontend",
+    description:
+      "Sitio profesional para mostrar proyectos frontend, landing pages, integraciones con APIs y buenas practicas con Astro, React, TypeScript y Tailwind.",
+  },
+  {
+    title: "Portfolio RPA",
+    description:
+      "Espacio tecnico para presentar automatizaciones, casos de uso, arquitectura Dispatcher-Perfomer, manejo de colas y contenido especializado en RPA.",
+  },
+  {
+    title: "Landing Page profesional",
+    description:
+      "Pagina orientada a conversion para presentar servicios de automatizacion y desarrollo web con una propuesta clara y profesional.",
+  },
+] as const;
+
+const stackItems = [
   "Blue Prism",
   "Astro",
   "Power Automate",
@@ -20,50 +40,99 @@ const technologies = [
   title="Astro Portfolio Lab | Curso practico"
   description="Proyecto practico para aprender Astro con TypeScript estricto, Tailwind CSS, SEO y despliegue en Netlify."
 >
-  <section class="py-24 sm:py-32">
-    <Container>
-      <div class="max-w-3xl">
-        <Badge label="Desarrollo Web - RPA" />
+  <Container>
+    <!-- HERO -->
+    <section class="py-20 sm:py-28">
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-wrap gap-3">
+            <Badge label="Astro" />
+            <Badge label="TypeScript" />
+            <Badge label="Tailwind CSS" />
+          </div>
 
-        <h1
-          class="mt-6 text-4xl font-bold tracking-tight text-slate-50 sm:text-6xl"
-        >
-          Potenciando tu capacidad de <span class="text-teal-400"
-            >automatización</span
-          > y <span class="text-teal-400">posicionamiento</span> en internet.
-        </h1>
+          <div class="max-w-4xl">
+            <h1
+              class="text-4xl font-bold tracking-tight text-slate-50 sm:text-6xl"
+            >
+              Construi portfolios profesionales rapidos, modernos y mantenibles.
+            </h1>
 
-        <p class="mt-6 text-lg leading-8 text-slate-300">
-          Hola, mi nombre es <strong class="text-teal-400"
-            >Ezequiel Lopez</strong
-          >, es un gusto y un honor para mi que le eches un vistazo a mi perfil.
-          Te invito a revisar el portfolio que mejor se adapte a lo que buscas. <strong
-            >Gracias!</strong
-          >
-        </p>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              Astro Portfolio Lab es una base práctica para crear un portfolio
+              frontend, un portfolio RPA con blog técnico y una landing page
+              profesional usando una arquitectura limpia y un sistema visual
+              reutilizable.
+            </p>
+          </div>
 
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/rpa"> Ver portfolio RPA </ButtonLink>
-          <ButtonLink href="/frontend" variant="secondary"
-            >Ver portfolio frontend</ButtonLink
-          >
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/frontend"> Ver portfolio frontend </ButtonLink>
+
+            <ButtonLink href="/rpa" variant="secondary">
+              Explorar portfolio RPA
+            </ButtonLink>
+
+            <ButtonLink href="/contact" variant="ghost"> Contacto </ButtonLink>
+          </div>
         </div>
-
-        <ul
-          class="mt-10 flex flex-wrap gap-3"
-          aria-label="Tecnologias principales"
-        >
-          {
-            technologies.map((tech) => (
-              <li>
-                <span class="rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm text-slate-300">
-                  {tech}
-                </span>
-              </li>
-            ))
-          }
-        </ul>
       </div>
-    </Container>
-  </section>
-</BaseLayout>
+    </section>
+
+    <!-- CARD -->
+    <section class="py-2">
+      <Card variant="highlight">
+        <div class="flex flex-col gap-4">
+          <p
+            class="text-sm font-semibold uppercase tracking-[0.24em] text-teal-200"
+          >
+            Sistema visual
+          </p>
+
+          <div>
+            <h2 class="text-2xl font-bold text-slate-50">
+              Dark mode tecnologico desde el inicio
+            </h2>
+
+            <p class="mt-3 leading-7 text-slate-300">
+              La identidad visual combina fondo azul profundo, superficies
+              oscuras, bordes sutiles y acentos cyan/verde agua para mantener un
+              estilo sobrio, técnico y profesional.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            {
+              stackItems.map((item) => (
+                <div class="rounded-2xl border border-slate-700/60 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-200">
+                  {item}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </Card>
+    </section>
+
+    <!-- SECTION: ENTREGABLES -->
+    <section class="py-16">
+      <SectionHeader
+        eyebrow="Entregables"
+        title="Tres piezas reales para tu portfolio profesional"
+        description="El proyecto no se queda en una practica aislada. La idea es construir sitios publicables, mantenibles y utiles para mostrar tu perfil tecnico."
+      />
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          focusAreas.map((area, index) => (
+            <Card variant={index === 0 ? "highlight" : "default"}>
+              <h3 class="text-xl font-semibold text-slate-50">{area.title}</h3>
+
+              <p class="mt-4 leading-7 text-slate-400">{area.description}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </section>
+  </Container></BaseLayout
+>

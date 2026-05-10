@@ -4,18 +4,25 @@
     color-scheme: dark;
 
     --color-background: #020617;
+    --color-background-soft: #030b1f;
+
     --color-surface: #0f172a;
     --color-surface-soft: #111827;
+    --color-surface-muted: #1e293b;
+
     --color-border: #1e293b;
+    --color-border-soft: rgba(148, 163, 184, 0.18);
+
     --color-text: #e5f0ff;
+    --color-text-strong: #f8fafc;
     --color-muted: #94a3b8;
+
     --color-primary: #2dd4bf;
     --color-primary-hover: #5eead4;
     --color-secondary: #38bdf8;
-}
+    --color-accent: #22d3ee;
 
-html {
-    scroll-behavior: smooth;
+    --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.45)
 }
 
 @layer base {
@@ -25,6 +32,13 @@ html {
         box-sizing: border-box;
     }
 }
+
+html {
+    background: var(--color-background);
+    color: var(--color-text);
+    scroll-behavior: smooth;
+}
+
 
 body {
     min-height: 100vh;
@@ -48,4 +62,9 @@ input,
 textarea,
 select {
     font: inherit;
+}
+
+::selection {
+    background: rgba(45, 212, 191, 0.32);
+    color: var(--color-text-strong);
 }

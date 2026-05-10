@@ -1,0 +1,20 @@
+---
+type CardVariant = "default" | "highlight";
+
+interface Props {
+  variant?: CardVariant;
+}
+
+const { variant = "default" } = Astro.props;
+
+const baseClasses = "rounded-3xl border p-6 transition duration-200";
+
+const variantClasses: Record<CardVariant, string> = {
+  default: "border-slate-700/60 bg-slate-900/70 hover:border-cyan-300/30",
+  highlight: "border-teal-300/30 bg-teal-300/10 hover:border-teal-200/50",
+};
+---
+
+<article class:list={[baseClasses, variantClasses[variant]]}>
+  <slot />
+</article>

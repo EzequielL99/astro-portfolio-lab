@@ -1,20 +1,28 @@
 ---
+import { undefined } from "astro:schema";
+
+type ButtonVariant = "primary" | "secondary" | "ghost";
+
 interface Props {
   href: string;
-  variant?: "primary" | "secondary";
+  variant?: ButtonVariant;
+  target?: "_blank" | "_self";
 }
 
-const { href, variant = "primary" } = Astro.props;
+const { href, variant = "primary", target = "_self" } = Astro.props;
 ---
 
 <a
   href={href}
+  target={target}
   class:list={[
-    "inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-950",
+    "inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
     {
-      "bg-teal-400 text-slate-950! hover:bg-teal-200": variant === "primary",
-      "border border-slate-700 bg-slate-900/70 text-slate-100! hover:border-cyan-300/60 hover:text-cyan-300!":
+      "bg-teal-400 text-slate-950 hover:bg-teal-300 shadow-lg shadow-teal-500/20":
+        variant === "primary",
+      "border border-cyan-300/30 bg-cyan-300/10 text-cyan-100 hover:bg-cyan-300/15 hover:border-cyan-200/50":
         variant === "secondary",
+      "text-slate-300 hover:text-white hover:bg-white/5": variant === "ghost",
     },
   ]}
 >

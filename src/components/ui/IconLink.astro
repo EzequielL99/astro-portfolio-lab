@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  target?: "_blank" | "_self";
+}
+
+const { href, label, target = "_self" } = Astro.props;
+---
+
+<a
+  href={href}
+  aria-label={label}
+  title={label}
+  target={target}
+  class="inline-flex size-11 items-center justify-center rounded-full border border-slate-700/70 bg-slate-900/70 text-slate-300 transition hover:border-cyan-300/40 hover:text-cyan-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+>
+  <slot />
+</a>
