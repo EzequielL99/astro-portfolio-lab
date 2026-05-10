@@ -1,0 +1,14 @@
+---
+import Container from "../ui/Container.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-800/80 py-8">
+  <Container
+    class="flex flex-col gap-2 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>&copy; {currentYear} Astro Portfolio Lab.</p>
+    <p>Construido con Astro, TypeScript y Tailwind CSS.</p>
+  </Container>
+</footer>
