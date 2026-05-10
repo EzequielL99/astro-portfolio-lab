@@ -5,12 +5,14 @@ import Container from "../components/ui/Container.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const technologies = [
+  "Blue Prism",
   "Astro",
+  "Power Automate",
   "TypeScript",
   "Tailwind CSS",
   "React",
   "SEO",
-  "Netlify",
+  "JavaScript",
 ] as const;
 ---
 
@@ -21,24 +23,29 @@ const technologies = [
   <section class="py-24 sm:py-32">
     <Container>
       <div class="max-w-3xl">
-        <Badge label="Curso practico de Astro" />
+        <Badge label="Desarrollo Web - RPA" />
 
         <h1
           class="mt-6 text-4xl font-bold tracking-tight text-slate-50 sm:text-6xl"
         >
-          Construccion de portfolios y landing pages con Astro
+          Potenciando tu capacidad de <span class="text-teal-400"
+            >automatización</span
+          > y <span class="text-teal-400">posicionamiento</span> en internet.
         </h1>
 
         <p class="mt-6 text-lg leading-8 text-slate-300">
-          Este proyecto sera la base para desarrollar un portfolio frontend, un
-          portfolio RPA con blog tecnico y una landing page profesional
-          optimizada para SEO.
+          Hola, mi nombre es <strong class="text-teal-400"
+            >Ezequiel Lopez</strong
+          >, es un gusto y un honor para mi que le eches un vistazo a mi perfil.
+          Te invito a revisar el portfolio que mejor se adapte a lo que buscas. <strong
+            >Gracias!</strong
+          >
         </p>
 
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/frontend">Ver portfolio frontend</ButtonLink>
-          <ButtonLink href="/rpa" variant="secondary"
-            >Ver portfolio RPA</ButtonLink
+          <ButtonLink href="/rpa"> Ver portfolio RPA </ButtonLink>
+          <ButtonLink href="/frontend" variant="secondary"
+            >Ver portfolio frontend</ButtonLink
           >
         </div>
 

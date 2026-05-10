@@ -1,5 +1,6 @@
 ---
 import Container from "../ui/Container.astro";
+import NavSocialMedia from "./NavSocialMedia.astro";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -8,7 +9,10 @@ const currentYear = new Date().getFullYear();
   <Container
     class="flex flex-col gap-2 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between"
   >
-    <p>&copy; {currentYear} Astro Portfolio Lab.</p>
+    <p>&copy; {currentYear} Ezequiel Lopez.</p>
+
     <p>Construido con Astro, TypeScript y Tailwind CSS.</p>
+    
+    <NavSocialMedia />
   </Container>
 </footer>
