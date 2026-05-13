@@ -1,27 +1,49 @@
 ---
+import "../styles/global.css";
 import MainFooter from "../components/layout/MainFooter.astro";
 import MainHeader from "../components/layout/MainHeader.astro";
-import "../styles/global.css";
+import SEO from "../components/seo/SEO.astro";
 
 interface Props {
   title: string;
   description: string;
+  canonical?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  image,
+  type = "website",
+  noindex = false,
+} = Astro.props;
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      type={type}
+      noindex={noindex}
+    />
   </head>
-  <body>
+  <body
+    class="min-h-screen bg-(--color-background) text-(--color-text) antialiased"
+  >
     <MainHeader />
 
     <main>

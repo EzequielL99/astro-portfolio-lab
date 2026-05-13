@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image = "/og-default.jpg",
+  type = "website",
+  noindex = false,
+} = Astro.props;
+
+const siteName = "Astro Portfolio Lab";
+const currentUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? "https://example.com",
+).toString();
+const canonicalUrl = canonical ?? currentUrl;
+const ogImageUrl = new URL(
+  image,
+  Astro.site ?? "https://example.com",
+).toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<link rel="canonical" href={canonicalUrl} />
+
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+<!-- OPENGRAPH -->
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:image" content={ogImageUrl} />
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />

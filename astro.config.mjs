@@ -6,6 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://example.com",
   vite: {
     plugins: [tailwindcss()],
   },
