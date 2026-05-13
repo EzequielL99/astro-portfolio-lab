@@ -10,7 +10,7 @@ const socialMediaItems = [
 <nav class="hidden items-center gap-3 md:flex" aria-label="Redes sociales">
   {
     socialMediaItems.map((item) => (
-      <a href={item.href} class="text-slate-300 transition hover:text-cyan-300">
+      <a class="cursor-pointer transition text-(--color-muted) hover:text-(--color-primary-hover)">
         <Icon name={item.icon} class="w-6 h-6" />
       </a>
     ))

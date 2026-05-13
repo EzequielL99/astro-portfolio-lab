@@ -1,0 +1,22 @@
+# Astro Portfolio Lab — Progress
+
+## Clase 1
+- Setup Astro
+- Tailwind
+- BaseLayout
+- Header/Footer
+- Componentes base
+
+## Clase 2
+- Tokens visuales
+- Dark mode
+- Card
+- SectionHeader
+- IconLink
+- Home mejorada
+
+## Clase 3
+- SEO.astro
+- BaseLayout ajustado
+- metadata en páginas base 
+- site configurado.
