@@ -1,0 +1,50 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Card from "@/components/ui/Card.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+
+const sortedProjects = projects.sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+);
+---
+
+<BaseLayout
+  title="Proyectos | Astro Portfolio Lab"
+  description="Listado de proyectos del portfolio construidos con Astro y tecnologías modernas"
+>
+  <Container class="py-16">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-50">Proyectos</h1>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        sortedProjects.map((project) => (
+          <Card>
+            <p class="text-sm text-(--color-primary)">{project.data.type}</p>
+            <h2 class="mt-2 text-xl font-semibold">
+              <a
+                href={`/projects/${project.id}`}
+                class="hover:text-(--color-primary-hover) transition-colors"
+              >
+                {project.data.title}
+              </a>
+            </h2>
+            <p class="mt-3 text-sm text-slate-300">
+              {project.data.description}
+            </p>
+
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {project.data.stack.map((item) => (
+                <li class="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-200">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))
+      }
+    </div>
+  </Container>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error("Project slug is required.");
+}
+
+const project = await getEntry("projects", slug);
+
+if (!project) {
+  throw new Error(`Project not found for slug: ${slug}`);
+}
+
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`${project.data.title} | Proyectos`}
+  description={project.data.description}
+>
+  <p class="text-sm text-cyan-300">{project.data.type}</p>
+  <h1 class="mt-2 text-4xl font-semibold">{project.data.title}</h1>
+  <p class="mt-4 text-lg text-slate-300">{project.data.description}</p>
+
+  <ul class="mt-6 flex flex-wrap gap-2">
+    {
+      project.data.stack.map((item) => (
+        <li class="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-200">
+          {item}
+        </li>
+      ))
+    }
+  </ul>
+
+  <article class="prose prose-invert mt-10 max-w-none">
+    <Content />
+  </article>
+</BaseLayout>
