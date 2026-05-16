@@ -1,4 +1,6 @@
 ---
+import ButtonLink from "@/components/ui/ButtonLink.astro";
+import Container from "@/components/ui/Container.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
@@ -33,21 +35,60 @@ const { Content } = await render(project);
   title={`${project.data.title} | Proyectos`}
   description={project.data.description}
 >
-  <p class="text-sm text-cyan-300">{project.data.type}</p>
-  <h1 class="mt-2 text-4xl font-semibold">{project.data.title}</h1>
-  <p class="mt-4 text-lg text-slate-300">{project.data.description}</p>
+  <Container class="py-16">
+    <p class="text-sm text-cyan-300">{project.data.type}</p>
 
-  <ul class="mt-6 flex flex-wrap gap-2">
-    {
-      project.data.stack.map((item) => (
-        <li class="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-200">
-          {item}
-        </li>
-      ))
-    }
-  </ul>
+    <p class="mt-2 text-xs text-slate-400">
+      Estado: {project.data.status}
+    </p>
 
-  <article class="prose prose-invert mt-10 max-w-none">
-    <Content />
-  </article>
+    <h1 class="mt-2 text-4xl font-semibold">{project.data.title}</h1>
+
+    <p class="mt-4 text-lg text-slate-300">{project.data.description}</p>
+    <p class="mt-2 text-xs text-slate-400">
+      Fecha de publicación: {project.data.publishedAt.toLocaleDateString("es-AR")}
+    </p>
+
+    <!-- STACK -->
+    <ul class="mt-6 flex flex-wrap gap-2">
+      {
+        project.data.stack.map((item) => (
+          <li class="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-200">
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- URLs -->
+    <div class="mt-8 flex flex-wrap gap-3">
+      {
+        project.data.demoUrl && (
+          <ButtonLink
+            target="_blank"
+            href={project.data.demoUrl}
+            variant="primary"
+          >
+            Ver demo
+          </ButtonLink>
+        )
+      }
+
+      {
+        project.data.repoUrl && (
+          <ButtonLink
+            target="_blank"
+            href={project.data.repoUrl}
+            variant="secondary"
+          >
+            Ver repositorio
+          </ButtonLink>
+        )
+      }
+    </div>
+
+    <article class="prose prose-invert mt-10 max-w-none">
+      <Content />
+    </article>
+  </Container>
 </BaseLayout>

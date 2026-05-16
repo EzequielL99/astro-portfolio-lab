@@ -7,6 +7,7 @@ stack:
   - Tailwind CSS
 image: "/images/projects/astro-portfolio-lab-cover.jpg"
 repoUrl: "https://github.com/tuusuario/astro-portfolio-lab"
+demoUrl: "https://github.com/tuusuario/astro-portfolio-lab"
 featured: true
 type: "frontend"
 status: "in-progress"
